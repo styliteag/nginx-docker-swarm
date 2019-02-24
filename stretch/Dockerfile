@@ -16,5 +16,6 @@ ENV UPSTREAM tasks.upstream
 ENV TEMPLATE_IN /upstream.tmpl
 ENV TEMPLATE_OUT /etc/nginx/upstream.inc
 
+RUN date > /version.txt
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["nginx","-g","'daemon off;'"]

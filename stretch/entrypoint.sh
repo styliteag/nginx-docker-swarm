@@ -1,6 +1,16 @@
 #!/bin/bash
 set -e
 
+echo "Starting $0 on $HOSTNAME"
+
+if [ -e /version.txt ] ; then
+  echo "Version:"
+  cat /version.txt
+fi
+
+echo "UPSTREAM: $UPSTREAM"
+echo "TEMPLATE: $TEMPLATE_IN -> $TEMPLATE_OUT"
+
 # Make a file with the dns of the upstream
 IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
 
