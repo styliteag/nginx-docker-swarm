@@ -35,4 +35,8 @@ IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
 ) &
 
 # The default is command:"nginx -g 'daemon off;'"
+while : ; do
+  $@
+done
+# This should never be reached
 exec "$@"
