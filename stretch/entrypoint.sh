@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+set -x
+#set -e
 
 # Make a file with the dns of the upstream
 IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
@@ -13,6 +14,9 @@ IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
 		  echo "Doing $ip"
 		  IP=$ip envsubst < $TEMPLATE_IN >> $TEMPLATE_OUT
           done
+	  # If it fails go back to default
+	  nginx -t && IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
+	  nginx -t
   }
   UPSTREAM_OLD=none
   while : 
