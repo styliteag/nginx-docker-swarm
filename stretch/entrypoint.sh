@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-# Make a empty file
-> $TEMPLATE_OUT
+# Make a file with the dns of the upstream
+IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
 
 (
   function generate_config {
