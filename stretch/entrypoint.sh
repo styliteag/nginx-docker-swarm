@@ -1,6 +1,6 @@
 #!/bin/bash
+set -e
 set -x
-#set -e
 
 # Make a file with the dns of the upstream
 IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
@@ -40,6 +40,7 @@ IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
 
 # The default is command:"nginx -g 'daemon off;'"
 while : ; do
+  echo "@: $@"
   nginx -t
   /bin/bash -c "$@"
   #eval "$@"
