@@ -40,6 +40,7 @@ IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
 
 # The default is command:"nginx -g 'daemon off;'"
 while : ; do
+  nginx -t
   /bin/bash -c "$@"
   #eval "$@"
   sleep 10
