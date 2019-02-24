@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-set -x
 
 # Make a file with the dns of the upstream
 IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
@@ -44,7 +43,6 @@ IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
 while : ; do
   echo "@: $@"
   nginx -t
-  #/bin/bash -c "$@"
   eval "$@"
   sleep 10
 done
