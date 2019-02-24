@@ -42,8 +42,8 @@ IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
 while : ; do
   echo "@: $@"
   nginx -t
-  /bin/bash -c "$@"
-  #eval "$@"
+  #/bin/bash -c "$@"
+  eval "$@"
   sleep 10
 done
 # This should never be reached
