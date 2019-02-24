@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# Make a empty file
+> $TEMPLATE_OUT
+
 (
   function generate_config {
 	  IPS="$*"
