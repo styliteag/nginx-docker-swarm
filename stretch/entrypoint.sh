@@ -4,12 +4,14 @@ set -e
 echo "Starting $0 on $HOSTNAME"
 
 if [ -e /version.txt ] ; then
-  echo "Version:"
+  echo -n "Version:"
   cat /version.txt
 fi
 
 echo "UPSTREAM: $UPSTREAM"
 echo "TEMPLATE: $TEMPLATE_IN -> $TEMPLATE_OUT"
+echo "NGINX_VERSION: $NGINX_VERSION"
+echo "NJS_VERSION: $NJS_VERSION"
 
 # Make a file with the dns of the upstream
 IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
