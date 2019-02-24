@@ -15,8 +15,10 @@ IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
 		  IP=$ip envsubst < $TEMPLATE_IN >> $TEMPLATE_OUT
           done
 	  # If it fails go back to default
-	  nginx -t && IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
-	  nginx -t
+	  if ! nginx -t ; then
+		echo "FAILED.. go back"
+	  	IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
+	  fi
   }
   UPSTREAM_OLD=none
   while : 
