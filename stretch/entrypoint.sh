@@ -9,6 +9,7 @@ if [ -e /version.txt ] ; then
 fi
 
 echo "UPSTREAM: $UPSTREAM"
+echo "PORT: $PORT"
 echo "TEMPLATE: $TEMPLATE_IN -> $TEMPLATE_OUT"
 echo "NGINX_VERSION: $NGINX_VERSION"
 echo "NJS_VERSION: $NJS_VERSION"
