@@ -9,13 +9,13 @@ if [ -e /version.txt ] ; then
 fi
 
 echo "UPSTREAM: $UPSTREAM"
-echo "PORT: $PORT"
+echo "UPSTREAM_PORT: $UPSTREAM_PORT"
 echo "TEMPLATE: $TEMPLATE_IN -> $TEMPLATE_OUT"
 echo "NGINX_VERSION: $NGINX_VERSION"
 echo "NJS_VERSION: $NJS_VERSION"
 
 # Make a file with the dns of the upstream
-IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
+PORT=$UPSTREAM_PORT IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
 
 (
   function generate_config {
@@ -24,12 +24,12 @@ IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
 	  > $TEMPLATE_OUT
 	  for ip in $IPS ; do
 		  echo "Doing $ip"
-		  IP=$ip envsubst < $TEMPLATE_IN >> $TEMPLATE_OUT
+		  PORT=$UPSTREAM_PORT IP=$ip envsubst < $TEMPLATE_IN >> $TEMPLATE_OUT
           done
 	  # If it fails go back to default
 	  if ! nginx -t ; then
 		echo "FAILED.. go back"
-	  	IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
+	  	PORT=$UPSTREAM_PORT IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
 	  fi
   }
   UPSTREAM_OLD=none
