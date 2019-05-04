@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+# Done set -e ( This can end my subprocess)
+# set -e
 
 echo "Starting $0 on $HOSTNAME"
 
