@@ -1,4 +1,4 @@
-FROM nginx
+FROM nginx:latest
 LABEL maintainer="Wim Bonis wb@stylite.de"
 
 RUN apt-get update \
