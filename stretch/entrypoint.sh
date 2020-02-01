@@ -36,7 +36,7 @@ PORT=$UPSTREAM_PORT IP=$UPSTREAM envsubst < $TEMPLATE_IN > $TEMPLATE_OUT
   UPSTREAM_OLD=none
   while : 
   do
-    UPSTREAM_IPS=$(host -t a -4 $UPSTREAM | cut -d " " -f 4 | sort -u)
+    UPSTREAM_IPS=$(host -t a -4 $UPSTREAM | grep -v "not found" | cut -d " " -f 4 | sort -u)
     if [ "$UPSTREAM_OLD" != "$UPSTREAM_IPS" ] ; then
 	 echo "=========OLD==============="
 	 echo $UPSTREAM_OLD
